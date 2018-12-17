@@ -16,7 +16,7 @@ use lsolesen\pel\PelExif;
 use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelTag;
 use lsolesen\pel\PelEntryAscii;
-//use lsolesen\pel\PelDataWindowOffsetException
+
 
 //вставка заголовков exif при обновлнеии вложения
 add_action( 'attachment_updated', 'update_exif_attach', 10, 3 );
@@ -102,7 +102,7 @@ function create_PelJpeg($jpeg){
 		if( $check == null){
 			$exif = new PelExif();
 			$tiff = new PelTiff();
-			$ifd = new PelIfd(PelIfd::IFD0);//PelIfd::IFD0
+			$ifd = new PelIfd(PelIfd::IFD0);
 			$tiff->setIfd($ifd);
 			$exif->setTiff($tiff);
 			$jpeg->setExif($exif);
@@ -289,7 +289,7 @@ function exif_filds_save( $post, $attachment ) {
 		}
 		$path = stristr( $post['attachment_url'], 'wp-content' );
 		$jpeg->saveFile('../'.$path);
-		//добавить удаление
+		
 	if( isset( $attachment['exif_desc'] ) )
 		if($entry2 == null) {
 			$entry2 = new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, $attachment['exif_desc']);
